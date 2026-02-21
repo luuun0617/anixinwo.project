@@ -243,6 +243,11 @@
     line-height: 1.2;
     font-weight: 700;
 }
+.body-2{
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+}
 .md{
     font-size: 16px;
     line-height: 1.5;
@@ -351,7 +356,9 @@
    margin: 0px; 
    width: 306px;
 }
-
+.bg-primary-white{
+    background-color: var(--primary-0);
+}
 .bg-primary-100{
     background-color: var(--primary-100);
 }

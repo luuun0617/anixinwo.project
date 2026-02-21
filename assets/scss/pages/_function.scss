@@ -13,4 +13,26 @@
 .bg-100{
   background-color: var(--primary-100);
 }
+.form-control{
+  background-color: var(--primary-100);
+  border-color: var(--gray-100);
+  padding: 16px 24px 16px 24px;
+  color: var(--gray-200);
+}
+.btn-outline{
+  color: var(--gray-300);
+  border-color: var(--primary-300);
+}
+.btn-outline:focus{
+  background-color: var(--primary-200);
+  border-color: var(--primary-400);
+  color: var(--gray-400);
+}
+.btn:focus{
+  box-shadow: none;
+}
+.btn-group .btn{
+  padding: 8px 16px 8px 16px;
+  border-radius: 4px !important;
+}
 

@@ -31,8 +31,68 @@
                 <img src="/assets/images/arrow-left.svg" alt="arrow-left" class="me-24">
                 <h4 class="m-0 h5 text-gray-400">所有已刊登物件</h4>
               </div>
-              <div class="p-36">
-
+              <div class="bg-primary-white p-36">
+                <div class="mb-24">
+                  <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">物件標題 <span class="body-2 text-system-accent">*</span></label>
+                  <input type="text" class="form-control" id="objectTitle" placeholder="輸入物件標題">
+                </div>
+                
+                <div class="mb-24">
+                  <label for="objectSelectionButton" class="form-label body-2 text-gray-400">物​件​類型​ <span class="body-2 text-system-accent">*</span></label>
+                  <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group single-select me-2" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-outline me-8">整層住家</button>
+                      <button type="button" class="btn btn-outline me-8">獨立套房</button>
+                      <button type="button" class="btn btn-outline me-8">分租套房</button>
+                      <button type="button" class="btn btn-outline me-8">雅房</button>
+                      <button type="button" class="btn btn-outline me-8">商辦</button>
+                    </div>
+                </div>
+                </div>
+                <!-- 物件坪數 -->
+                <div class="d-flex">
+                  <div class="mb-24 me-24 flex-fill">
+                    <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">物件坪數 <span class="body-2 text-system-accent">*</span></label>
+                    <input type="text" class="form-control flex-fill" id="objectSqm" placeholder="物件坪數">
+                  </div>
+                  <div class="mb-24 flex-fill">
+                    <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">物件總坪數 <span class="body-2 text-system-accent">*</span></label>
+                    <input type="text" class="form-control" id="objectTotalSqm" placeholder="物件總坪數">
+                  </div>
+                </div>
+                
+                <!-- 房屋守則 -->
+                <div class="mb-24">
+                  <label for="objectSelectionButton" class="form-label body-2 text-gray-400">其他 - 房屋守則</label>
+                  <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group single-select me-2" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-outline me-8">可開伙</button>
+                      <button type="button" class="btn btn-outline me-8">可養寵物</button>
+                      <button type="button" class="btn btn-outline me-8">不含管理費</button>
+                    </div>
+                </div>
+                <!-- 物件租金、管理費 -->
+                <div class="d-flex">
+                  <div class="mb-24 me-24 flex-fill">
+                    <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">物件租金 (月) <span class="body-2 text-system-accent">*</span></label>
+                    <input type="text" class="form-control flex-fill" id="objectSqm" placeholder="輸入物件租金">
+                  </div>
+                  <div class="mb-24 flex-fill">
+                    <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">物件管理費 <span class="body-2 text-system-accent">*</span></label>
+                    <input type="text" class="form-control" id="objectTotalSqm" placeholder="輸入物件管理費">
+                  </div>
+                </div>
+                <!-- 聯絡人、聯絡電話 -->
+                <div class="d-flex">
+                  <div class="mb-24 me-24 flex-fill">
+                    <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">聯絡人 <span class="body-2 text-system-accent">*</span></label>
+                    <input type="text" class="form-control flex-fill" id="contactPersonName" placeholder="輸入聯絡人姓名">
+                  </div>
+                  <div class="mb-24 flex-fill">
+                    <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">聯絡電話 <span class="body-2 text-system-accent">*</span></label>
+                    <input type="text" class="form-control text-gray-200" id="phoneNumber" placeholder="輸入聯絡電話">
+                  </div>
+                </div>
               </div>
             ​</div>
           </div>
