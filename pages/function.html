@@ -11,10 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Mina:wght@400;700&family=Noto+Sans+TC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 </head>
-  <body>
+  <body class="bg-primary-100">
     <%- include('./layout/header'); -%>
-    <h1>我是function</h1>
-    <div class="row my-60 bg-100">
+    <!--功能儀錶板-->
+    <div class="row my-60 bg-100 mx-12">
         <div class="col-3">
           <div class="list-group list-group-flush" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active h6" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home"><img src="/assets/images/Icons-person.png" alt="Icons-person" class="me-16">個人​資料​編輯</a>
@@ -27,16 +27,18 @@
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">個人​資料​編輯</div>
             <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">我​的​收藏​</div>
             <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-              <div class="d-flex my-14 mb-40">
+              <div class="d-flex my-14 mb-40 align-center">
                 <img src="/assets/images/arrow-left.svg" alt="arrow-left" class="me-24">
-                <h4 class="m-0 h5 text-gray-400">所有已刊登物件</h4>
-              </div>
+                <p class="m-0 h5 text-gray-400">所有已刊登物件</p>
+                <button type="submit" class="btn btn-submit h6 text-primary-500 m-0 ms-auto">儲存物件資訊<img src="/assets/images/Icons-correct.svg" alt="Icons-correct" class="ms-16"></button>
+              </div> 
               <div class="bg-primary-white p-36">
+                <!--物件標題-->
                 <div class="mb-24">
                   <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">物件標題 <span class="body-2 text-system-accent">*</span></label>
                   <input type="text" class="form-control" id="objectTitle" placeholder="輸入物件標題">
                 </div>
-                
+                <!--物件類型-->
                 <div class="mb-24">
                   <label for="objectSelectionButton" class="form-label body-2 text-gray-400">物​件​類型​ <span class="body-2 text-system-accent">*</span></label>
                   <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
@@ -60,7 +62,41 @@
                     <input type="text" class="form-control" id="objectTotalSqm" placeholder="物件總坪數">
                   </div>
                 </div>
-                
+                <!--物件圖片-->
+                <div class="mb-24">
+                  <label for="formFile" class="form-label body-2 text-gray-400">物件圖片 <span class="body-2 text-system-accent">*</span></label>
+                  <div class="d-flex">
+                    <img src="/assets/images/Image-1.png" alt="Image-1" class="me-16">
+                    <img src="/assets/images/Image-2.png" alt="Image-2" class="me-16">
+                    <img src="/assets/images/Image-3.png" alt="Image-3" class="me-16">
+                    <img src="/assets/images/Image-4.png" alt="Image-4" class="me-16">
+                    <label for="file1" class="upload-box">
+                      <img src="/assets/images/image-button.png" alt="image-button">
+                    </label>
+                    <input type="file" id="file1" hidden>
+                  </div>
+                </div>
+                <!--物件地址-->
+                <div class="mb-24">
+                    <label for="inputState" class="form-label body-2 text-gray-400">物件地址 <span class="body-2 text-system-accent">*</span></label>
+                    <div class="d-flex">
+                      <select id="inputState" class="form-select me-8 state-style">
+                        <option selected>縣市</option>
+                        <option>台北市</option>
+                        <option>台中市</option>
+                        <option>台南市</option>
+                        <option>高雄市</option>
+                      </select>
+                      <select id="inputState" class="form-select me-8 state-style">
+                        <option selected>地區</option>
+                        <option>鹽埕區</option>
+                        <option>鼓山區</option>
+                        <option>左營區</option>
+                        <option>楠梓區</option>
+                      </select>
+                      <input type="text" class="form-control address-style" id="objectSqm" placeholder="輸入完整地址">
+                    </div>
+                </div>
                 <!-- 房屋守則 -->
                 <div class="mb-24">
                   <label for="objectSelectionButton" class="form-label body-2 text-gray-400">其他 - 房屋守則</label>
@@ -70,8 +106,45 @@
                       <button type="button" class="btn btn-outline me-8">可養寵物</button>
                       <button type="button" class="btn btn-outline me-8">不含管理費</button>
                     </div>
+                  </div>
                 </div>
-                <!-- 物件租金、管理費 -->
+                <!-- 提供設備 -->
+                <div class="mb-24">
+                  <label for="objectSelectionButton" class="form-label body-2 text-gray-400">其他 - 提供設備</label>
+                  <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="equipment-list me-2 d-flex flex-wrap" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-outline me-8 mb-8 mb-8">電梯</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">車位</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">冰箱</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">桌椅</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">單人床</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">雙人床</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">對外窗</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">沙發</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">電視</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">衣櫃</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">網路</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">第四台</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">洗衣機</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">烘衣機</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">冷氣</button>
+                      <button type="button" class="btn btn-outline me-8 mb-8">熱水器</button>
+                    </div>
+                  </div>
+                </div>
+                <!--物件屋齡-->
+                <div class="mb-24">
+                  <label for="inputState" class="form-label body-2 text-gray-400">物件屋齡 <span class="body-2 text-system-accent">*</span></label>
+                  <select id="inputState" class="form-select">
+                    <option selected>請選擇屋齡</option>
+                    <option>1 年</option>
+                    <option>2 年</option>
+                    <option>3 年</option>
+                    <option>4 年</option>
+                    <option>5 年</option>
+                  </select>
+                </div>
+                  <!-- 物件租金、管理費 -->
                 <div class="d-flex">
                   <div class="mb-24 me-24 flex-fill">
                     <label for="formGroupExampleInput" class="form-label body-2 text-gray-400">物件租金 (月) <span class="body-2 text-system-accent">*</span></label>

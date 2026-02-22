@@ -153,10 +153,10 @@
     padding-right: 12px;
     width: calc(100% / 12* 8);
 }
-.col-10{
+.col-9{
     padding-left: 12px;
     padding-right: 12px;
-    width: calc(100% / 12* 10);
+    width: calc(100% / 12* 9);
 }
 .col-12{
     width: 100%;
@@ -532,6 +532,9 @@
 .m-12{
     margin: 12px;
 }
+.ms-16{
+    margin-left: 16px;
+}
 .ms-95{
     margin-left: 95px;
 }
@@ -605,7 +608,10 @@
 .m8{
     margin: 8px;
 }
-
+.mx-12{
+    margin-right: 12px;
+    margin-left: 12px;
+}
 .mx-64{
     margin-right: 64px;
     margin-left: 64px;

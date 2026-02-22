@@ -35,4 +35,24 @@
   padding: 8px 16px 8px 16px;
   border-radius: 4px !important;
 }
-
+.form-select{
+  background-color: var(--primary-100);
+  border-color: var(--gray-100);
+  padding: 16px 24px 16px 24px;
+  color: var(--gray-300);
+}
+.state-style{
+  width: 137px;
+}
+.address-style{
+  width: 604px;
+}
+.equipment-list  .btn{
+  padding: 8px 16px;
+  flex: 0 0 auto;  /* ❗重點：不要拉長 */
+}
+.btn-submit{
+  background-color: var(--primary-300);
+  border-radius: 100px;
+  padding: 16px 24px;
+}
