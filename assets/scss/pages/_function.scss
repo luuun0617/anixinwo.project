@@ -10,6 +10,12 @@
   border-color:  var(--primary-300);
   border-top: 0px;
 }
+
+@media(max-width:767px){
+  .list-group{
+    flex-direction: row;
+  }
+}
 .bg-100{
   background-color: var(--primary-100);
 }
@@ -55,4 +61,13 @@
   background-color: var(--primary-300);
   border-radius: 100px;
   padding: 16px 24px;
+}
+@media(max-width:767px){
+  .px-md-negative-12{
+    padding-left: -12px;
+    padding-right: -12px;
+  }
+  .btn-submit-md{
+  margin: 0 auto;
+}
 }

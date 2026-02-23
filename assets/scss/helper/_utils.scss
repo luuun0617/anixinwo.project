@@ -87,8 +87,6 @@
 .row{
     display: flex;
     flex-wrap: wrap;
-    margin-right: -12px;
-    margin-left: -12px;
 }
 .select-row{
     display: flex;
@@ -112,6 +110,10 @@
         margin-left: 0;
         margin-right: 0;
     }
+    .row-md{
+    margin-right: 0px;
+    margin-left: 0px;
+}
 }
 .col-1{
     padding-left: 12px;
@@ -181,8 +183,8 @@
         width: calc(100% / 4*3);
     }
     .col-md-4{
-        padding-left: 6px;
-        padding-right: 6px;
+        padding-left: 12px;
+        padding-right: 12px;
         width: 100%;
     }
     .flex-md-column{
@@ -458,7 +460,7 @@
     padding-top: 40px;
 }
 @media(max-width: 767px){
-    .py-md-0{
+    .p-md-0{
         padding: 0px;
     }
     .py-md-8{
@@ -467,6 +469,10 @@
     }
     .p-md-24{
         padding: 24px;
+    }
+    .py-md-14{
+        padding-top: 14px;
+        padding-bottom: 14px;
     }
     .py-md-16{
         padding-top: 16px;
@@ -608,6 +614,7 @@
 .m8{
     margin: 8px;
 }
+
 .mx-12{
     margin-right: 12px;
     margin-left: 12px;
@@ -669,8 +676,8 @@
     .mb-md-30{
         margin-bottom: 30px;
     }
-    .mb-md-32{
-        margin-bottom: 32px;
+    .mb-md-36{
+        margin-bottom: 36px;
     }
     .mt-md-6{
         margin-top: 6px;
@@ -705,15 +712,12 @@
     .me-md-24{
         margin-right: 24px;
     }
-    .me-sm-167{
-        margin-right: 167px;
-    }
     .me-md-280{
         margin-right: 280px;
     }
-    .my-md-40{
-        margin-top: 40px;
-        margin-bottom: 40px;
+    .my-md-48{
+        margin-top: 48px;
+        margin-bottom: 48px;
     }
 }
 @media(max-width: 576px){
