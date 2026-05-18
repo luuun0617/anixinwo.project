@@ -1,0 +1,89 @@
+
+@use "sass:color";
+
+.custom-list-button {
+  color: #d4ab6a;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative; 
+  display: inline-block;
+  padding-bottom: 4px; 
+  cursor:pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%; 
+    background-color: #d4ab6a;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      color: color.adjust(#d4ab6a, $lightness: -15%);
+
+      &::after {
+        width: 100%; 
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      color: color.adjust(#d4ab6a, $lightness: -15%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// 登出按鈕
+.custom-list-logout {
+  color: #c85a17;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #c85a17;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      color: color.adjust(#c85a17, $lightness: -15%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      color: color.adjust(#c85a17, $lightness: -15%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}

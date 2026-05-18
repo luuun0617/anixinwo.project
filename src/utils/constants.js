@@ -1,0 +1,1 @@
+export const pUrl = import.meta.env.BASE_URL;

@@ -1,0 +1,25 @@
+.action-row {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      background-color: #f8f9fa;
+    }
+  }
+}
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+.react-datepicker-wrapper {
+  flex: 1 1 auto;
+  width: auto;
+}

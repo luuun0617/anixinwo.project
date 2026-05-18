@@ -1,0 +1,214 @@
+
+import { useForm,useWatch} from 'react-hook-form';
+import { CheckCircle2 } from 'lucide-react';
+import { auth } from '../../firebaseConfig';
+import { db } from '../../firebaseConfig';
+import { doc,getDoc } from 'firebase/firestore';
+
+import { createUserWithEmailAndPassword , signInWithPopup, GoogleAuthProvider,getAdditionalUserInfo } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { showMessage } from '../../store/MessageSlice';
+
+const Signin = ({onSwitchToLogin}) => {
+
+  const dispatch= useDispatch();
+  const navigate= useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange"
+  });
+
+  const onSubmit = async(data) => {
+    try{
+      await createUserWithEmailAndPassword(auth, data.email,data.password);
+      dispatch(showMessage({
+        type:"success",
+        text:"註冊成功!歡迎加入安心窩🎉"
+      }));
+
+      if(onSwitchToLogin){
+        onSwitchToLogin()
+      };
+
+    }catch(err){
+      console.error("註冊失敗:"+err.message);
+
+      if(err.code === 'auth/email-already-in-use'){
+        dispatch(showMessage({
+          type:"warning",
+          text:"這個Email已經註冊過了,請直接登入!"
+        }));
+      }else{
+        dispatch(showMessage({
+          type:"error",
+          text:`註冊時發生${err?.message||"未知"}錯誤!如有問題,請洽客服人員`
+        }));
+      }
+    }
+  };
+
+  const handleGoogleLogin=async()=>{
+    const provider = new GoogleAuthProvider();
+    try{
+      const result = await signInWithPopup(auth,provider);
+      const loggedInUser = result.user;
+      const additionalInfo = getAdditionalUserInfo(result);
+
+      if(additionalInfo.isNewUser){
+        navigate('/');
+        dispatch(showMessage({
+          type:"success",
+          text:"歡迎新用戶註冊安心窩!"
+        }))
+                
+      }else{
+        let customName='';
+        try{
+          const userDocRef =doc(db,'users', loggedInUser.uid);
+          const docSnap = await getDoc(userDocRef);
+          if (docSnap.exists() && docSnap.data().name) {
+            customName = docSnap.data().name;
+          }
+        }catch(err){
+          console.error("獲取使用者名稱失敗", err);
+          dispatch(showMessage({
+            type:"error",
+            message:"取用使用者名稱 發生錯誤,請按f12確認錯誤,或請你立即連繫客服"
+          }))
+        }
+        navigate('/');
+        dispatch(showMessage({
+          type:'normal',
+          text: `${customName || loggedInUser.displayName || '使用者'} 你已註冊Google帳戶,歡迎回到安心窩🎉`
+        }));
+      }
+            
+    }catch(err){
+      console.error(`註冊時發生${err?.message||"未知"}錯誤!`);
+      dispatch(showMessage({
+        type:"error",
+        text:"Google註冊時發生錯誤!如有問題,請洽客服"
+      }));
+    }
+  }
+
+  const emailValue=useWatch({control,name:"email"});
+  const passwordValue= useWatch({control,name:"password"});
+  const confirmPasswordValue = useWatch({control,name:"confirmPassword"});
+
+  return (
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Email 欄位 */}
+        <div className="mb-4">
+          <div className="position-relative">
+            <input 
+              className={`form-control form-control-lg border-0 custom-input pe-5 ${errors.email ? 'is-invalid' : ''}`}
+              placeholder='輸入 E-mail'
+              {...register("email", { 
+                required: "請輸入E-mail", 
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Email格式不正確!"
+                } 
+              })} 
+            />
+                        
+            <div className="position-absolute top-50 translate-middle-y end-0 me-3">
+              {!errors.email && emailValue && <CheckCircle2 color="#198754" size={20} />}
+            </div>
+            {errors.email && (
+              <div className='invalid-feedback ms-2 d-block'>
+                {errors.email.message}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 密碼欄位 */}
+        <div className="mb-4">
+          <div className='position-relative'>
+            <input 
+              type="password" 
+              className={`form-control form-control-lg border-0 py-2 custom-input pe-5 ${errors.password ? 'is-invalid' : ''}`}
+              placeholder='輸入密碼'
+              {...register("password", {
+                required: "密碼為必填!",
+                minLength: { value: 6, message: "至少要有六碼!" },
+                maxLength: { value: 12, message: "不可超過十二碼!" },
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z0-9]+$/,
+                  message: "需包含大寫字母與數字，不可含特殊符號"
+                }
+              })}
+            />
+            <div className="position-absolute top-50 translate-middle-y end-0 me-3">
+              {!errors.password && passwordValue && <CheckCircle2 color="#198754" size={20} />}
+            </div>
+          </div>
+          {errors.password && (
+            <div className='invalid-feedback ms-2 d-block'>
+              {errors.password.message}
+            </div>
+          )}
+        </div>
+
+        {/* 確認密碼欄位 */}
+        <div className="mb-4">
+          <div className="position-relative">
+            <input 
+              type="password" 
+              className={`form-control form-control-lg border-0 py-2 custom-input pe-5 ${errors.confirmPassword ? 'is-invalid' : ''}`}
+              placeholder='再次輸入密碼'
+              {...register("confirmPassword", {
+                validate: (value) => value === passwordValue || "兩次輸入不一致"
+              })}
+            />
+            <div className="position-absolute top-50 translate-middle-y end-0 me-3">
+              {!errors.confirmPassword && confirmPasswordValue && <CheckCircle2 color="#198754" size={20} />}
+            </div>
+          </div>
+          {errors.confirmPassword && (
+            <div className='invalid-feedback ms-2 d-block'>
+              {errors.confirmPassword.message}
+            </div>
+          )}
+        </div>
+
+        {/* 提交按鈕 */}
+        <button 
+          type="submit" 
+          className="w-100 py-3 fs-5 border-0 fw-bold custom-login-button" 
+        >
+          註冊
+        </button>
+      </form>
+            
+      {/* Google 註冊按鈕 */}
+      <div className="text-center mt-3">
+        <p>或</p>
+        <button
+          type="button"
+          onClick={handleGoogleLogin}
+          className="fw-bold py-3 btn btn-light border shadow-sm w-100"
+        >
+          <img 
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+            alt="Google" 
+            width="20" 
+            className="me-2"
+          />
+          使用Google帳號繼續
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default Signin;

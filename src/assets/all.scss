@@ -1,0 +1,51 @@
+// 1. 外部原生 CSS 引入
+@import "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+TC:wght@100..900&display=swap";
+
+// 2. Bootstrap 的核心與變數
+@import "bootstrap/scss/functions";
+@import "./variables";
+@import "bootstrap/scss/bootstrap";
+
+// 3. 各區域模組
+@import "./index";
+@import "./Homepage";
+@import "./HouseGallery";
+@import "./Sign";
+@import "./Menu";
+@import "./Login";
+
+// 個人資料編輯
+@import "./UserProfileEdit";
+
+// 我的最愛
+@import "./Collected";
+
+// 搜尋頁面
+@import "./search";
+
+// 上傳屋件
+@import "./Manager/function.board";
+@import "./Manager/helper/uti";
+@import "./Manager/helper/vari";
+@import "./Manager/helper/publish";
+
+// 錯誤頁面
+@import "./Error";
+
+// 自訂 border 顏色工具類
+.border-primary-100 { border-color: $primary-100 !important; }
+.border-primary-200 { border-color: $primary-200 !important; }
+.border-primary-300 { border-color: $primary-300 !important; }
+.border-primary-400 { border-color: $primary-400 !important; }
+.border-primary-500 { border-color: $primary-500 !important; }
+
+// 自訂 text 顏色工具類
+.text-primary-100 { color: $primary-100 !important; }
+.text-primary-200 { color: $primary-200 !important; }
+.text-primary-300 { color: $primary-300 !important; }
+.text-primary-400 { color: $primary-400 !important; }
+.text-primary-500 { color: $primary-500 !important; }
+
+.text-gray-300 { color: $gray-300 !important; }
+.text-gray-400 { color: $gray-400 !important; }
+.text-gray-500 { color: $gray-500 !important; }

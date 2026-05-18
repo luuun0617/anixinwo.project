@@ -1,0 +1,471 @@
+@use "sass:color";
+
+$primary-100: #FCFBF7 !default;
+$primary-200: #FBF4E4 !default;
+$primary-300: #F5E0BD !default;
+$primary-400: #D4AB6A !default;
+$primary-500: #6F5D42 !default;
+$primary-dark: #b38f56;
+$primary-light: #f0e6d2;
+$secondary-color: #df7042;
+$secondary-dark: #c85a2c;
+$sub: #80A5B8;
+$brown-dark: #6f5d42;
+$text-gray: #888;
+$text-dark: #555;
+$border-color: #f0f0f0;
+$gray-100: #E7E7E7 ;
+$gray-200: #ABABAB ;
+$gray-300: #808080 ;
+$gray-400: #565656;
+$gray-500: #2C2C2C ;
+
+.property-list-section {
+  padding: 80px 0;
+  background: #fcfbf7;
+
+  @include media-breakpoint-down(md) {
+    padding: 140px 0 48px;
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include media-breakpoint-down(md) {
+      gap: 24px;
+    }
+  }
+}
+
+.property-hero-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding: 0 16px;
+}
+
+/* =========================================
+   2. PropertyFilterSidebar (側邊欄)
+========================================= */
+.filter-sidebar {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  position: sticky;
+  top: 24px;
+
+  &__title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.filters-content {
+  display: grid;
+  gap: 24px;
+
+  &__group {
+    display: grid;
+    gap: 12px;
+
+    h3 {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    label {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 14px;
+      color: $text-gray;
+    }
+  }
+}
+
+/* =========================================
+   3. PropertyListHero (頂部橫幅)
+========================================= */
+.property-hero {
+  position: relative;
+  height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgb(0 0 0 / 40%), rgb(0 0 0 / 40%)),
+    url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80")
+      center / cover no-repeat;
+
+  @include media-breakpoint-down(md) {
+    height: 240px;
+    border-radius: 12px;
+  }
+
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    color: #fff;
+    text-align: center;
+    padding-bottom: 40px;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    @include media-breakpoint-down(md) {
+      font-size: 24px;
+    }
+  }
+
+  &__search-container {
+    position: absolute;
+    bottom: -60px;
+    left: 40px;
+    right: 40px;
+    z-index: 10;
+
+    @include media-breakpoint-down(md) {
+      left: 16px;
+      right: 16px;
+      bottom: -120px;
+    }
+  }
+}
+
+.property-card {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) auto;
+  gap: 24px;
+  padding: 24px 16px;
+  background: #fff;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 3%);
+  transition: box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgb(0 0 0 / 8%);
+  }
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  &__image-wrap {
+    width: 280px;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      height: 200px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: $gray-500;
+    padding-right: 16px;
+  }
+
+  &__favorite {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $primary-400;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: $primary-dark;
+    }
+  }
+
+  &__address {
+    color: $primary-500;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #b3b3b3;
+    font-size: 16px;
+    margin-top: auto;
+    padding-left: 0px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  &__meta-icon {
+    color: $primary-400;
+  }
+
+  &__price {
+    align-self: flex-end;
+    font-size: 24px;
+    font-weight: 600;
+    color: $secondary-color;
+    white-space: nowrap;
+    padding-bottom: 4px;
+
+    @include media-breakpoint-down(md) {
+      align-self: flex-start;
+      margin-top: 12px;
+    }
+  }
+}
+
+/* =========================================
+   5. PropertyPagination (分頁)
+========================================= */
+.pagination {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-gray;
+    transition: all 0.2s;
+
+    &:disabled {
+      color: #e0e0e0;
+      cursor: not-allowed;
+    }
+  }
+
+  &__number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    &:hover:not(.is-active) {
+      background: $primary-light;
+    }
+  }
+
+  .is-active {
+    background: $primary-400;
+    color: #fff;
+  }
+
+  &__ellipsis {
+    color: $text-gray;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+}
+
+.property-search {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 32px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 5%);
+
+  @include media-breakpoint-down(md) {
+    padding: 16px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 1.5fr;
+    gap: 16px;
+    align-items: end;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $border-color;
+
+    @include media-breakpoint-down(md) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  &__field {
+    border-right: 1px solid $border-color;
+    padding-right: 16px;
+
+    @include media-breakpoint-down(md) {
+      border-right: none;
+      border-bottom: 1px solid $border-color;
+      padding-right: 0;
+      padding-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 6px;
+    }
+  }
+
+  &__select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__select {
+    width: 100%;
+    appearance: none;
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    color: #b3b3b3;
+    padding-right: 24px;
+    cursor: pointer;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    option {
+      color: $text-dark;
+    }
+  }
+
+  &__select-icon {
+    position: absolute;
+    right: 0;
+    color: #b3b3b3;
+    pointer-events: none;
+  }
+
+  &__input-group {
+    display: flex;
+    gap: 8px;
+
+    @include media-breakpoint-down(md) {
+      padding-left: 0;
+      margin-top: 8px;
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: $text-dark;
+      background: transparent;
+
+      &::placeholder {
+        color: #e0e0e0;
+      }
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    width: 117px;
+    gap: 16px;
+    background: $primary-light;
+    color: $primary-dark;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $primary-400;
+      color: #fff;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+
+    @include media-breakpoint-down(md) {
+      justify-content: center;
+    }
+  }
+
+  &__action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &--reset {
+      color: $secondary-color;
+
+      &:hover {
+        color: $secondary-dark;
+      }
+    }
+
+    &--save {
+      color: $sub;
+
+      &:hover {
+        color: color.adjust($sub, $lightness: -15%);
+      }
+    }
+  }
+}
