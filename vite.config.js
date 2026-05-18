@@ -4,7 +4,7 @@ import svgr from 'vite-plugin-svgr';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import path from 'path';
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/Project-for-ain-xin-house-final/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/anixinwo.project/' : '/',
   plugins: [
     react(),
     svgr(),
